@@ -19,9 +19,11 @@
         "activeTab"
     ],
 
-    "browser_action": {
-        "default_icon": "icons/icon.svg",
-        "default_title": "MLB TV Controls",
-        "default_popup": "popup/popup.html"
-    }
+    "content_scripts": [
+        {
+            "matches": ["https://*.mlb.com/tv/*"],
+            "css": ["controls.css"],
+            "js": ["content_scripts/controls.js"]
+        }
+    ]
 }
