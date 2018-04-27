@@ -9,6 +9,12 @@
         "48": "icons/icon.svg"
     },
 
+    "applications": {
+        "gecko": {
+            "id": "mlbtvcontrols@patrickkenzie.com"
+        }
+    },
+
     "permissions": [
         "activeTab"
     ],
@@ -17,5 +23,5 @@
         "default_icon": "icons/icon.svg",
         "default_title": "MLB TV Controls",
         "default_popup": "popup/popup.html"
-    },
+    }
 }

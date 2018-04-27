@@ -9,8 +9,20 @@ html, body {
 }
 
 button {
-    display: block;
-    min-width: 8rem;
-    margin: 1rem;
-    padding: 0.25rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0.5rem;
+    padding: 0.1rem;
+    border-radius: 50%;
+    background-color: lightgray;
+    border: solid 2px gray;
+}
+
+button:hover, button:focus {
+    cursor: pointer;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+button:active {
+    filter: brightness(0.9) contrast(0.9);
 }

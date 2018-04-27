@@ -1,13 +1,15 @@
 function listen() {
   document.addEventListener("click", (e) => {
     function seek(tabs) {
-      var command = {};
+	  var value = parseInt(e.target.value);
+	  var command = {};
+
       if (e.target.classList.contains('skip')) {
         command.command = 'skip';
-        command.duration = e.target.value;
+        command.duration = value;
       } else if (e.target.classList.contains('jump')) {
         command.command = 'jump';
-        command.timestamp = e.target.value;
+        command.timestamp = value;
       }
 
       browser.tabs.sendMessage(tabs[0].id, command);
