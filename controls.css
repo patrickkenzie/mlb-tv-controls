@@ -18,13 +18,13 @@ button {
     margin: 0.25rem;
     padding: 0.1rem;
     border-radius: 50%;
-    background-color: lightgray;
-    border: solid 2px gray;
+    background-color: transparent;
+    border: none;
 }
 
 button:hover, button:focus {
     cursor: pointer;
-    filter: brightness(1.1) contrast(1.1);
+    filter: brightness(3);
 }
 
 button:active {

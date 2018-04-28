@@ -25,5 +25,7 @@
             "css": ["controls.css"],
             "js": ["content_scripts/controls.js"]
         }
-    ]
+    ],
+
+    "web_accessible_resources": ["icons/*.png"]
 }

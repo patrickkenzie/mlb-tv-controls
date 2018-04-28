@@ -28,21 +28,24 @@ let setup = function () {
     getVideo().currentTime = timestamp;
   }
 
-  function createButton(label, cls, value) {
+  function createButton(wrap, cls, value, icon) {
     let button = document.createElement('button');
     button.type = 'button';
-    button.textContent = label;
     button.value = value;
     button.classList.add(cls);
 
-    return button;
+    let img = document.createElement('img');
+    img.src = browser.extension.getURL('icons/' + icon + '.png');
+    img.title = cls + ' ' + value;
+
+    button.appendChild(img);
+    wrap.appendChild(button);
   }
 
   function createWrapper() {
     let wrapper = document.createElement('div');
 
     wrapper.classList.add('mlb-tv-controls');
-    wrapper.innerHTML = '';
     wrapper.addEventListener('click', (e) => {
       if (e.target.tagName != "BUTTON") {
         return;
@@ -68,15 +71,12 @@ let setup = function () {
 
   let wrapper = check || createWrapper();
 
-  let restart = createButton('|<', 'jump', 0);
-  let skip10 = createButton('+10', 'skip', 10);
-  let skip110 = createButton('+1m40s', 'skip', 110);
-  let skip300 = createButton('+5m', 'skip', 300);
+  createButton(wrapper, 'jump', 0, 'restart');
+  createButton(wrapper, 'skip', -30, 'backward_short');
+  createButton(wrapper, 'skip', 10, 'forward_short');
+  createButton(wrapper, 'skip', 110, 'forward_medium');
+  createButton(wrapper, 'skip', 300, 'forward_long');
 
-  wrapper.appendChild(restart);
-  wrapper.appendChild(skip10);
-  wrapper.appendChild(skip110);
-  wrapper.appendChild(skip300);
   controls.appendChild(wrapper);
 
   browser.runtime.onMessage.addListener((message) => {
