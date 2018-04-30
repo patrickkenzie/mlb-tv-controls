@@ -32,11 +32,12 @@ let setup = function () {
     let button = document.createElement('button');
     button.type = 'button';
     button.value = value;
+    button.title = cls + ' ' + value + 's';
     button.classList.add(cls);
 
     let img = document.createElement('img');
     img.src = browser.extension.getURL('icons/' + icon + '.png');
-    img.title = cls + ' ' + value;
+    img.alt = cls + ' ' + value + 's';
 
     button.appendChild(img);
     wrap.appendChild(button);
