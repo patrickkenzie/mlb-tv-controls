@@ -34,6 +34,7 @@ let setup = function () {
     button.value = value;
     button.title = cls + ' ' + value + 's';
     button.classList.add(cls);
+    button.classList.add('media-control');
 
     let img = document.createElement('img');
     img.src = browser.extension.getURL('icons/' + icon + '.png');
