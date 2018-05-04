@@ -3,7 +3,7 @@
     "name": "MLB TV Controls",
     "version": "1.1",
 
-    "description": "Adds additional player controls to this MLB.tv player",
+    "description": "Adds additional player controls to the MLB.tv player",
     "homepage_url": "https://github.com/patrickkenzie/mlb-tv-controls",
     "icons": {
         "48": "icons/icon.svg"
