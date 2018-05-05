@@ -4,6 +4,7 @@ let setup = function () {
     return;
   }
 
+  // Wait for player to load
   let container = document.querySelector('.bottom-controls-container');
   if (container) {
     window.hasMlbTvControls = true;
@@ -11,6 +12,11 @@ let setup = function () {
     waiter = setTimeout(setup, 100);
     return;
   }
+
+  // Remove game length spoilers
+  document.querySelector('.scrubber-bar-wrapper').remove();
+  document.querySelector('.time-bar').remove();
+  document.querySelector('.controls__button-live').remove();
 
   function getVideo() {
     return document.querySelector('#bam-video-player video');
