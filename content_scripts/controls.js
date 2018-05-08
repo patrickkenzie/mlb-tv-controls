@@ -17,6 +17,7 @@ let setup = function () {
   document.querySelector('.scrubber-bar-wrapper').remove();
   document.querySelector('.time-bar').remove();
   document.querySelector('.controls__button-live').remove();
+  document.querySelector('.bottom-controls-container').style.height = 'auto';
 
   function getVideo() {
     return document.querySelector('#bam-video-player video');
