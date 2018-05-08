@@ -13,6 +13,14 @@ let setup = function () {
     return;
   }
 
+  let config = {
+    restart: {type: 'jump', value: 0},
+    skip_short_back: {type: 'skip', value: -10},
+    skip_short: {type: 'skip', value: 10},
+    skip_med: {type: 'skip', value: 110},
+    skip_long: {type: 'skip', value: 300}
+  };
+
   // Remove game length spoilers
   document.querySelector('.scrubber-bar-wrapper').remove();
   document.querySelector('.time-bar').remove();
@@ -28,24 +36,29 @@ let setup = function () {
       duration *= -1;
     }
 
+    console.log('skip: ' + duration);
     getVideo().currentTime += duration;
   }
 
   function jump(timestamp) {
+    console.log('jump: ' + timestamp);
     getVideo().currentTime = timestamp;
   }
 
-  function createButton(wrap, cls, value, icon) {
+  function createButton(wrap, key) {
+    let settings = config[key];
+    console.log(settings);
+
     let button = document.createElement('button');
     button.type = 'button';
-    button.value = value;
-    button.title = cls + ' ' + value + 's';
-    button.classList.add(cls);
+    button.value = settings.value;
+    button.title = settings.type + ' ' + settings.value + 's';
+    button.classList.add(settings.type);
     button.classList.add('media-control');
 
     let img = document.createElement('img');
-    img.src = browser.extension.getURL('icons/' + icon + '.png');
-    img.alt = cls + ' ' + value + 's';
+    img.src = browser.extension.getURL('icons/' + key + '.png');
+    img.alt = button.title;
 
     button.appendChild(img);
     wrap.appendChild(button);
@@ -80,21 +93,13 @@ let setup = function () {
 
   let wrapper = check || createWrapper();
 
-  createButton(wrapper, 'jump', 0, 'restart');
-  createButton(wrapper, 'skip', -30, 'backward_short');
-  createButton(wrapper, 'skip', 10, 'forward_short');
-  createButton(wrapper, 'skip', 110, 'forward_medium');
-  createButton(wrapper, 'skip', 300, 'forward_long');
+  createButton(wrapper, 'restart');
+  createButton(wrapper, 'skip_short_back');
+  createButton(wrapper, 'skip_short');
+  createButton(wrapper, 'skip_med');
+  createButton(wrapper, 'skip_long');
 
   controls.appendChild(wrapper);
-
-  browser.runtime.onMessage.addListener((message) => {
-    if (message.command === 'skip') {
-      skip(message.duration, message.back);
-    } else if (message.command === 'jump') {
-      jump(message.timestamp);
-    }
-  });
 }
 
 let waiter = setTimeout(setup, 500);
