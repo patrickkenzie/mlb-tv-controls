@@ -1,3 +1,4 @@
+var mlbTvPort;
 let setup = function () {
   if (window.hasMlbTvControls) {
     clearTimeout(waiter);
@@ -27,6 +28,10 @@ let setup = function () {
   document.querySelector('.controls__button-live').remove();
   document.querySelector('.bottom-controls-container').style.height = 'auto';
 
+  // Setup listener for keyboard shortcuts
+  var port = browser.runtime.connect();
+  port.onMessage.addListener(onMessage);
+
   function getVideo() {
     return document.querySelector('#bam-video-player video');
   }
@@ -36,18 +41,31 @@ let setup = function () {
       duration *= -1;
     }
 
-    console.log('skip: ' + duration);
     getVideo().currentTime += duration;
   }
 
   function jump(timestamp) {
-    console.log('jump: ' + timestamp);
     getVideo().currentTime = timestamp;
+  }
+
+  function onMessage(message) {
+    let settings = config[message.command];
+
+    if (typeof settings !== 'object' || !settings.hasOwnProperty('type')){
+      return;
+    }
+
+    if (settings.type === 'skip') {
+      skip(settings.value);
+    }
+
+    if (settings.type === 'jump') {
+      jump(settings.value);
+    }
   }
 
   function createButton(wrap, key) {
     let settings = config[key];
-    console.log(settings);
 
     let button = document.createElement('button');
     button.type = 'button';

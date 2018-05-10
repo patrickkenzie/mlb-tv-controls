@@ -27,5 +27,30 @@
         }
     ],
 
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "commands": {
+        "skip_short": {
+            "suggested_key": {
+                "default": "Ctrl+Right"
+            },
+            "description": "Skip forward a short amount"
+        },
+        "skip_med": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Right"
+            },
+            "description": "Skip forward a medium amount"
+        },
+        "skip_short_back": {
+            "suggested_key": {
+                "default": "Ctrl+Left"
+            },
+            "description": "Skip backward a short amount"
+        }
+    },
+
     "web_accessible_resources": ["icons/*.png"]
 }
