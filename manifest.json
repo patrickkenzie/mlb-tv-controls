@@ -32,23 +32,23 @@
     },
 
     "commands": {
-        "skip_short": {
+        "skip_med": {
             "suggested_key": {
                 "default": "Ctrl+Right"
             },
-            "description": "Skip forward a short amount"
+            "description": "Skip forward a medium amount"
         },
-        "skip_med": {
+        "skip_long": {
             "suggested_key": {
                 "default": "Ctrl+Shift+Right"
             },
-            "description": "Skip forward a medium amount"
+            "description": "Skip forward a long amount"
         },
-        "skip_short_back": {
+        "restart": {
             "suggested_key": {
-                "default": "Ctrl+Left"
+                "default": "Ctrl+Shift+Left"
             },
-            "description": "Skip backward a short amount"
+            "description": "Jump to the beginning of the game"
         }
     },
 
